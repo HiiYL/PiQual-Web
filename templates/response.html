@@ -8,7 +8,7 @@
     <div>
          <p>
          {% if filename %}
-		   <img src="{{ url_for('uploaded_file', filename=filename) }}">
+		   <img src="{{ url_for('uploaded_file', filename=filename) }}" height="200">
 		{% else %}
 		  <h1>no image for whatever reason</h1>
 		{% endif %}

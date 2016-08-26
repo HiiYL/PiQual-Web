@@ -33,13 +33,12 @@ def root():
         im = im.transpose((2,0,1))
         im = np.expand_dims(im, axis=0)
 
-        model = VGG_16('vgg16_weights.h5')
-        sgd = SGD(lr=0.1, decay=1e-6, momentum=0.9, nesterov=True)
-        model.compile(optimizer=sgd, loss='categorical_crossentropy')
+
         out = model.predict(im)
         object_class = str(names.loc[np.argmax(out)]["names"])[10:]
         return render_template('response.html',object_class = object_class, filename=filename)
     return app.send_static_file('index.html')
+
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
@@ -47,5 +46,9 @@ def uploaded_file(filename):
     filename)
 
 if __name__ == "__main__":
-    app.debug = True
-    app.run()
+    # app.debug = True
+    model = VGG_16('vgg16_weights.h5')
+    sgd = SGD(lr=0.1, decay=1e-6, momentum=0.9, nesterov=True)
+    model.compile(optimizer=sgd, loss='categorical_crossentropy')
+    app.run(host='0.0.0.0')
+    # app.run()
