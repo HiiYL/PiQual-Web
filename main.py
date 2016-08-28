@@ -5,8 +5,9 @@ from werkzeug import secure_filename
 import os
 from ava import *
 import pandas as pd
-import cv2, numpy as np
+import numpy as np
 from scipy import ndimage, misc
+from keras.models import load_model
 
 UPLOAD_FOLDER = 'uploads/'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
@@ -32,8 +33,8 @@ def root():
 
         out = model.predict(im)
 
-        return render_template('response.html',object_class = out, filename=filename)
-    return app.send_static_file('index.html')
+        return render_template('index.html',object_class = out, filename=filename)
+    return render_template('index.html')
 
 
 @app.route('/uploads/<filename>')
@@ -43,8 +44,6 @@ def uploaded_file(filename):
 
 if __name__ == "__main__":
     # app.debug = True
-    model = VGG_19('ava_vgg_19_1.0_5.h5')
-    sgd = SGD(lr=0.1, decay=1e-6, momentum=0.9, nesterov=True)
-    model.compile(optimizer=sgd, loss='categorical_crossentropy')
-    app.run()
+    model = load_model('ava_vgg_19_1.0_5.h5')
+    app.run(host='0.0.0.0')
     # app.run()
