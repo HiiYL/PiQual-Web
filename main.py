@@ -9,6 +9,8 @@ import numpy as np
 from scipy import ndimage, misc
 from keras.models import load_model
 
+import netifaces as ni
+
 UPLOAD_FOLDER = 'uploads/'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
@@ -44,6 +46,9 @@ def uploaded_file(filename):
 
 if __name__ == "__main__":
     # app.debug = True
+    print("YOUR IP ADDRESS IS: {0}".format(ni.ifaddresses('en0')[2][0]['addr']))
     model = load_model('ava_vgg_19_1.0_5.h5')
+
+    
     app.run(host='0.0.0.0')
     # app.run()
