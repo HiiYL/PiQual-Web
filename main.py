@@ -9,6 +9,8 @@ import numpy as np
 import cv2
 from keras.models import load_model
 
+import netifaces as ni
+
 UPLOAD_FOLDER = 'uploads/'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
@@ -46,5 +48,6 @@ def uploaded_file(filename):
 if __name__ == "__main__":
     # app.debug = True
     model = load_model('linear_1e5_full_5.h5')
+    print("YOUR IP ADDRESS IS: {0}".format(ni.ifaddresses('en0')[2][0]['addr']))
     app.run(host='0.0.0.0')
     # app.run()
