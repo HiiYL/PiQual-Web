@@ -14,12 +14,7 @@
 		  <h1>no image for whatever reason</h1>
 		{% endif %}
          </p>
-         <h1> Score:{{object_class[0][1] * 100 }} %  </h1>
-         {% if object_class[0][1] > 0.5 %}
-           <h1>Good</h1>
-         {% else %}
-           <h1>Bad</h1>
-         {% endif %}
+         <h1> Score:{{object_class * 100 }} %  </h1>
 
     </div>
     <form action="" method=post enctype=multipart/form-data>

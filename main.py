@@ -6,7 +6,7 @@ import os
 from ava import *
 import pandas as pd
 import numpy as np
-from scipy import ndimage, misc
+import cv2
 from keras.models import load_model
 
 UPLOAD_FOLDER = 'uploads/'
@@ -22,14 +22,15 @@ def allowed_file(filename):
 def root():
     if request.method == 'POST':
       file = request.files['file']
-      if file and allowed_file(file.filename):
+      if file and allowed_file(file.filename.lower()):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         file.seek(0)
 
-        image = ndimage.imread(file, mode="RGB")
-        image_resized = misc.imresize(image, (224, 224)).T
-        im = np.expand_dims(image_resized,axis=0)
+        im = cv2.imdecode(np.fromstring(file.read(), np.uint8), cv2.IMREAD_COLOR)
+
+        im = cv2.resize(im, (224,224)).transpose((2,0,1))
+        im = np.expand_dims(im,axis=0)
 
         out = model.predict(im)
 
@@ -44,6 +45,6 @@ def uploaded_file(filename):
 
 if __name__ == "__main__":
     # app.debug = True
-    model = load_model('ava_vgg_19_1.0_5.h5')
+    model = load_model('linear_1e5_full_5.h5')
     app.run(host='0.0.0.0')
     # app.run()
