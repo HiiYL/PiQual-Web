@@ -3,8 +3,8 @@
 <head>
     <title>Hello World!</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.indigo-pink.min.css">
-	<script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
+  <link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body>
@@ -54,8 +54,8 @@
 <!--     <form action="" method=post id="form" enctype=multipart/form-data>
       <input type=file name=file id="file">
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-	  Upload
-	  </button>
+    Upload
+    </button>
      </form> -->
 </body>
 </html>
@@ -86,24 +86,26 @@ body {
 
 
 .demo-card-image.mdl-card {
-  width: 256px;
-  height: 256px;
+  width: 512px;
+  height: 512px;
   margin:auto;
   {% if filename %}
-  background: url('{{url_for('uploaded_file', filename=filename)}}') center / cover;
+  background: url('{{url_for('uploaded_file', filename=filename)}}') center no-repeat;
   {% else %}
   background: url('{{url_for('static', filename='llama.jpeg')}}') center / cover;
   {% endif %}
+  background-size: contain;
 }
 .demo-card-image.mdl-card.heatmap {
-  width: 256px;
-  height: 256px;
+  width: 512px;
+  height: 512px;
   margin:auto;
   {% if filename %}
-  background: url('{{url_for('heatmap_file', filename=filename)}}') center / cover;
+  background: url('{{url_for('heatmap_file', filename=filename)}}') center no-repeat;
   {% else %}
   background: url('{{url_for('static', filename='llama.jpeg')}}') center / cover;
   {% endif %}
+  background-size: contain;
 }
 .demo-card-image > .mdl-card__actions {
   height: 52px;
