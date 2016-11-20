@@ -1,0 +1,6 @@
+flask
+werkzeug
+numpy
+keras
+netifaces
+gunicorn
