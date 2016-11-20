@@ -4,4 +4,6 @@ uploads/
 
 *.pyc
 
+*.cpython-35.pyc
+
 .py[cod]

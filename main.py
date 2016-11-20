@@ -1,5 +1,5 @@
 from flask import Flask, request, redirect, url_for, render_template,send_from_directory
-from flask import g
+from flask import g,jsonify
 from werkzeug import secure_filename
 
 import os
@@ -40,6 +40,27 @@ def root():
     return render_template('index.html')
 
 
+@app.route('/api', methods=['POST'])
+def api():
+    if request.method == 'POST':
+      file = request.files['file']
+      print(file.filename)
+      if file:#and allowed_file(file.filename.lower()):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        file.seek(0)
+        dat = {'score': 5}
+        return jsonify(**dat)
+
+      #   im = cv2.imdecode(np.fromstring(file.read(), np.uint8), cv2.IMREAD_COLOR)
+
+      #   im = cv2.resize(im, (224,224)).transpose((2,0,1))
+      #   im = np.expand_dims(im,axis=0)
+
+      #   out = model.predict(im)
+
+
+
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
   return send_from_directory(app.config['UPLOAD_FOLDER'],
@@ -47,7 +68,7 @@ def uploaded_file(filename):
 
 if __name__ == "__main__":
     # app.debug = True
-    model = load_model('linear_1e5_full_5.h5')
+    # model = load_model('linear_1e5_full_5.h5')
     print("YOUR IP ADDRESS IS: {0}".format(ni.ifaddresses('en0')[2][0]['addr']))
     app.run(host='0.0.0.0')
     # app.run()
