@@ -5,3 +5,4 @@ keras
 netifaces
 gunicorn
 opencv-python
+theano
