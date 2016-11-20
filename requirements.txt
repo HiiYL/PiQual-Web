@@ -1,7 +1,0 @@
-flask
-werkzeug
-pandas
-numpy
-keras
-netifaces
-gunicorn
