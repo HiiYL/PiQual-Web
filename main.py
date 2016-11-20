@@ -88,7 +88,12 @@ def api():
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         file.seek(0)
-        dat = {'score': 5}
+        original_img = cv2.resize(cv2.imdecode(np.fromstring(file.read(), np.uint8), cv2.IMREAD_COLOR), (224,224))
+
+        im = preprocess_image(original_img)
+
+        out = model.predict(im)
+        dat = {'score': out[0][0][1] * 100 }
         return jsonify(**dat)
 
       #   im = cv2.imdecode(np.fromstring(file.read(), np.uint8), cv2.IMREAD_COLOR)
@@ -113,6 +118,6 @@ def heatmap_file(filename):
 if __name__ == "__main__":
     # app.debug = True
     
-    # print("YOUR IP ADDRESS IS: {0}".format(ni.ifaddresses('en0')[2][0]['addr']))
+    print("YOUR IP ADDRESS IS: {0}".format(ni.ifaddresses('en0')[2][0]['addr']))
     app.run(host='0.0.0.0')
     # app.run()
