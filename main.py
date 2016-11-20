@@ -1,6 +1,6 @@
 ## Hack to modify dim ordering
 import os
-with open(os.path.join(os.path.expanduser('~'), '.keras', 'keras.json'), "w+") as text_file:
+with open(os.path.join(os.path.expanduser('~'), '.keras', 'keras.json'), "a") as text_file:
     text_file.write('{"backend": "tensorflow","floatx": "float32","epsilon": 1e-07,"image_dim_ordering": "th"}')
 
 
