@@ -1,3 +1,10 @@
+## Hack to modify dim ordering
+import os
+with open(os.path.join(os.path.expanduser('~'), '.keras', 'keras.json'), "w+") as text_file:
+    text_file.write('{"backend": "tensorflow","floatx": "float32","epsilon": 1e-07,"image_dim_ordering": "th"}')
+
+
+
 from flask import Flask, request, redirect, url_for, render_template,send_from_directory
 from flask import g
 from werkzeug import secure_filename
