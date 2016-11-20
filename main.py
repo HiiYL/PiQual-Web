@@ -21,6 +21,9 @@ app = Flask(__name__, static_url_path='')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['HEATMAP_FOLDER'] = HEATMAP_FOLDER
 
+
+model = VGG_19_GAP_functional("aesthestic_gap_weights_1.h5", heatmap=True)
+
 def allowed_file(filename):
   return '.' in filename and \
     filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
@@ -71,7 +74,7 @@ def root():
 def uploaded_file(filename):
   return send_from_directory(app.config['UPLOAD_FOLDER'],
     filename)
-  
+
 @app.route('/heatmaps/<filename>')
 def heatmap_file(filename):
   return send_from_directory(app.config['HEATMAP_FOLDER'],
@@ -79,7 +82,7 @@ def heatmap_file(filename):
 
 if __name__ == "__main__":
     # app.debug = True
-    model = VGG_19_GAP_functional("aesthestic_gap_weights_1.h5", heatmap=True)
+    
     # print("YOUR IP ADDRESS IS: {0}".format(ni.ifaddresses('en0')[2][0]['addr']))
     app.run(host='0.0.0.0')
     # app.run()
