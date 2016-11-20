@@ -4,3 +4,4 @@ numpy
 keras
 netifaces
 gunicorn
+opencv-python
