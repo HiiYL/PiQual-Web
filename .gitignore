@@ -1,8 +1,5 @@
 *.h5
 
-uploads/
-heatmaps/
-
 *.pyc
 
 .py[cod]
