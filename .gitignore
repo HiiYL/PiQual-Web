@@ -1,6 +1,7 @@
 *.h5
 
 uploads/
+heatmaps/
 
 *.pyc
 
