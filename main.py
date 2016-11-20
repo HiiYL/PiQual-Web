@@ -22,7 +22,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['HEATMAP_FOLDER'] = HEATMAP_FOLDER
 
 
-model = VGG_19_GAP_functional("aesthestic_gap_weights_1.h5", heatmap=True)
+model = VGG_19_GAP_functional("aesthestic_gap_weights_1_tensorflow.h5", heatmap=True)
 
 def allowed_file(filename):
   return '.' in filename and \
