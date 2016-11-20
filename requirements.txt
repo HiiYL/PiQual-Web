@@ -2,6 +2,5 @@ flask
 werkzeug
 pandas
 numpy
-cv2
 keras
 netifaces
