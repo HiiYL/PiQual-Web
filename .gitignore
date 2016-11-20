@@ -1,7 +1,5 @@
 *.h5
 
-uploads/
-
 *.pyc
 
 *.cpython-35.pyc
