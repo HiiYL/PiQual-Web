@@ -2,6 +2,8 @@
 
 Webservice for Large Scale Image Aesthetics Evaluation, hosted on [heroku](http://piqual.herokuapp.com).
 
+![image](https://cloud.githubusercontent.com/assets/7908951/24046039/0fd8edfc-0b5c-11e7-99e0-26b362d7c5e3.png)
+
 ### Installation
 (Note) This project uses tensorflow dim ordering
 
